@@ -2,6 +2,9 @@ package com.example.remarket.di
 
 import android.content.Context
 import android.util.Log
+import androidx.room.Room
+import com.example.remarket.data.local.AppDatabase
+import com.example.remarket.data.local.ProductDao
 import com.example.remarket.data.network.ApiService
 import com.example.remarket.data.network.AuthInterceptor
 import com.example.remarket.data.repository.IProductRepository
@@ -86,8 +89,10 @@ object AppModule {
 
     @Provides @Singleton
     fun provideProductRepository(
-        apiService: ApiService
-    ): IProductRepository = ProductRepository(apiService)
+        dao: ProductDao,
+        apiService: ApiService,
+
+    ): IProductRepository = ProductRepository(dao,apiService)
     // Fíjate que devolvemos la INTERFAZ IProductRepository
 
     @Provides
@@ -98,4 +103,11 @@ object AppModule {
     @Provides @Singleton
     fun provideGetProductsUseCase(repo: IProductRepository): GetProductsUseCase =
         GetProductsUseCase(repo)
+
+    @Provides @Singleton
+    fun provideDatabase(@ApplicationContext ctx: Context): AppDatabase =
+        Room.databaseBuilder(ctx, AppDatabase::class.java, "remarket-db").build()
+
+    @Provides @Singleton
+    fun provideProductDao(db: AppDatabase): ProductDao = db.productDao()
 }

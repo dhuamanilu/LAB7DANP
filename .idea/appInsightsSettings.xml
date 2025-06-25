@@ -20,10 +20,10 @@
             <InsightsFilterSettings>
               <option name="connection">
                 <ConnectionSetting>
-                  <option name="appId" value="PLACEHOLDER" />
-                  <option name="mobileSdkAppId" value="" />
-                  <option name="projectId" value="" />
-                  <option name="projectNumber" value="" />
+                  <option name="appId" value="com.example.remarket" />
+                  <option name="mobileSdkAppId" value="1:839854628061:android:68714cd5226b4692c80f34" />
+                  <option name="projectId" value="remarket-f9a2b" />
+                  <option name="projectNumber" value="839854628061" />
                 </ConnectionSetting>
               </option>
               <option name="signal" value="SIGNAL_UNSPECIFIED" />

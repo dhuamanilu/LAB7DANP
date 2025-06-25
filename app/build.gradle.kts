@@ -4,7 +4,7 @@ plugins {
     alias(libs.plugins.hilt)
     alias(libs.plugins.kotlin.ksp)
     alias(libs.plugins.google.services)
-
+    id("androidx.hilt.work")
 }
 
 android {
@@ -49,13 +49,24 @@ android {
     packaging {
         resources {
             excludes += "/META-INF/{AL2.0,LGPL2.1}"
+            excludes += "/META-INF/versions/9/OSGI-INF/MANIFEST.MF"
         }
     }
 }
 
 dependencies {
+    ksp("androidx.room:room-compiler:2.6.1")
+    implementation(libs.room.runtime)
+    implementation(libs.room.ktx)
+    implementation(libs.work.runtime.ktx)
     implementation(libs.cloudinary.android)
     implementation(libs.androidx.core.i18n)
+    implementation(libs.androidx.adapters)
+    implementation(libs.identity.jvm)
+    implementation(libs.androidx.hilt.common)
+    implementation(libs.androidx.hilt.work)
+    implementation("androidx.hilt:hilt-work:1.0.0")
+
     ksp(libs.hilt.compiler)
     implementation(libs.material.icons.extended)
     implementation(libs.moshi)
